@@ -1,0 +1,10 @@
+[
+    {
+        "langue": "english",
+        "label1": "Link Shortening",
+        "label2": "Enter the link for the abbreviation below",
+        "label3": "The abbreviated link will be below",
+        "button1": "Shorten the link",
+        "button2": "Copy the finished link"
+    }
+]
