@@ -10,9 +10,10 @@ def short_link(user_link):
 
 
 def clicked():
-    """Main button to create short link"""
+    """Main button to create short link, change state to normal"""
     link = url.get()
     ready_link = short_link(link)
+    short_url.configure(state='normal')
     short_url.insert(0, ready_link)
 
 
@@ -26,6 +27,7 @@ def copy():
 window = tk.Tk()
 window.geometry("400x300")
 window.title('Short Link v0.1')
+window.resizable(width=False, height=False)
 
 """Main label aplication"""
 lbl = tk.Label(window, text="Сокращение ссылок", font=("Arial Bold", 29))
@@ -35,8 +37,9 @@ lbl.grid(column=0, row=0)
 lbl1 = tk.Label(window, text="Введите ссылку для сокращения ниже")
 lbl1.grid(column=0, row=1)
 
-"""Window to write link"""
+"""Window to write link and focus in window"""
 url = tk.Entry(window, width=45)
+url.focus()
 url.grid(column=0, row=2)
 
 """Button to create short link"""
@@ -47,8 +50,8 @@ btn_short.grid(column=0, row=3)
 lbl2 = tk.Label(window, text='Сокращенная ссылка будет ниже')
 lbl2.grid(column=0, row=4)
 
-"""Window to copy link"""
-short_url = tk.Entry(window, width=45)
+"""Window to copy link, begin disabled"""
+short_url = tk.Entry(window, width=45, state='disabled')
 short_url.grid(column=0, row=5)
 
 """Window to auto copy link in clipboard"""
