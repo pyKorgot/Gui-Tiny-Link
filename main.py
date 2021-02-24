@@ -3,6 +3,9 @@ import pyshorteners as ps
 import json
 
 
+langs = 'en'
+
+
 def short_link(user_link):
     """Get short link"""
     link = ps.Shortener()
@@ -10,12 +13,12 @@ def short_link(user_link):
     return short_link
 
 
-def langue():
-    with open("langue.json", "r") as read_file:
-        langs = json.load(read_file)
-    for lang in langs:
-        if lang["langue"] == 'english':
-            return lang
+def langue(lang):
+    """Langue Settings"""
+    file_lang = f'./langue/{lang}.json'
+    with open(file_lang, "r") as read_file:
+        lang = json.load(read_file)
+    return lang
 
 
 def clicked():
@@ -23,6 +26,7 @@ def clicked():
     link = url.get()
     ready_link = short_link(link)
     short_url.configure(state='normal')
+    short_url.delete(0, 'end')
     short_url.insert(0, ready_link)
 
 
@@ -34,10 +38,10 @@ def copy():
 
 """Main settings window"""
 window = tk.Tk()
-window.geometry("370x300")
+lang = langue(langs)
+window.geometry(f"{lang['width_window']}x{lang['hight_window']}")
 window.title('Short Link v0.1')
 window.resizable(width=False, height=False)
-lang = langue()
 
 """Main label aplication"""
 lbl = tk.Label(window, text=lang['label1'], font=("Arial Bold", 31))
